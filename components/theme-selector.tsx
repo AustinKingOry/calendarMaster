@@ -69,12 +69,13 @@ export function ThemeSelector({ settings, onSettingsChange }: ThemeSelectorProps
         <Label className="mb-2 block">Background Image</Label>
         <div className="relative">
           <input type="file" accept="image/*" onChange={handleImageUpload} className="sr-only" id="image-upload" />
-          <label htmlFor="image-upload" asChild>
-            <Button variant="outline" className="w-full cursor-pointer bg-transparent">
+          
+            <Button variant="outline" className="w-full cursor-pointer bg-transparent" asChild>
+            <label htmlFor="image-upload">
               <Upload className="w-4 h-4 mr-2" />
               Upload Background
+              </label>
             </Button>
-          </label>
         </div>
       </div>
 
