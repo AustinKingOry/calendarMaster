@@ -16,7 +16,7 @@ export function EventsSidebar({ events, maxEvents = 10, onEdit, onDelete }: Even
   return (
     <div className="w-full md:w-80 bg-card border-l border-border/50 rounded-lg overflow-hidden flex flex-col">
       <div className="p-4 border-b border-border/50 bg-muted/50">
-        <h3 className="font-semibold text-lg">Events</h3>
+        <h3 className="font-semibold text-lg">Our Events</h3>
         <p className="text-sm text-muted-foreground">
           {events.length} event{events.length !== 1 ? "s" : ""} this month
         </p>
