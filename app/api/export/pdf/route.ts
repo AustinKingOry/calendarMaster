@@ -1,6 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import * as chromium from "@sparticuz/chromium"
 import puppeteer from "puppeteer-core"
+import { getBrowser } from "@/lib/browser"
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,24 +11,10 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "HTML content is required" }, { status: 400 })
     }
 
-    let browser
-    const isLocal = process.env.NODE_ENV === "development"
-
-    if (isLocal) {
-      browser = await puppeteer.launch({
-        headless: true,
-      })
-    } else {
-      browser = await puppeteer.launch({
-        args: chromium.args,
-        defaultViewport: chromium.defaultViewport,
-        executablePath: await chromium.executablePath(),
-        headless: chromium.headless,
-      })
-    }
+    const browser = await getBrowser()
 
     const page = await browser.newPage()
-    await page.setViewport({ width: 1200, height: 800 })
+    await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 })
 
     const fullHtml = `
       <!DOCTYPE html>
