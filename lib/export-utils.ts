@@ -34,7 +34,18 @@ export async function exportCalendarAsPDF(elementId: string): Promise<void> {
   const element = document.getElementById(elementId)
   if (!element) return
 
-  const html = element.outerHTML
+  
+  const styles = Array.from(document.styleSheets)
+    .map((sheet) => {
+      try {
+        return Array.from(sheet.cssRules).map((r) => r.cssText).join("")
+      } catch {
+        return ""
+      }
+    })
+    .join("\n")
+  
+    const html = `<style>${styles}</style>${element.outerHTML}`
 
   try {
     const response = await fetch(serverless_url, {

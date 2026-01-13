@@ -258,7 +258,7 @@ export function CalendarApp() {
           )}
         >
           {/* Calendar View */}
-          <Card className="overflow-hidden">{renderCalendarView()}</Card>
+          <Card className="overflow-hidden py-0">{renderCalendarView()}</Card>
 
           {/* Events Sidebar - Only show for monthly view in landscape mode */}
           {calendarTemplate === "monthly" && layoutMode === "landscape" && (
